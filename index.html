@@ -105,23 +105,24 @@
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            background: var(--bg-pure);
-            color: var(--text-dark);
-            padding: 1rem 2rem;
+            background: var(--ice-primary);
+            color: var(--bg-pure);
+            padding: 1rem 2.5rem;
             border-radius: 9999px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
             text-decoration: none;
-            border: 1px solid var(--frost-border);
-            box-shadow: 0 4px 20px var(--ice-glow);
+            border: none;
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            border-color: var(--ice-primary);
-            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.3);
+            transform: translateY(-3px);
+            background: #0284c7; /* A slightly deeper blue on hover */
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.6);
         }
 
         /* Features Section */
