@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toujeniflow | Infrastructure Outbound & GTM</title>
+    <title>Toujeniflow | Système d'Acquisition & Outbound B2B</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --bg-pure: #ffffff;
-            --bg-snow: #f4fafd;
-            --text-dark: #0f172a;
-            --text-muted: #475569;
-            --ice-primary: #38bdf8;
-            --ice-glow: rgba(56, 189, 248, 0.15);
-            --frost-border: rgba(56, 189, 248, 0.3);
+            --bg-snow: #fafbfc; /* Updated to requested light grey/blue subtle tone */
+            --bg-highlight: #ebf5fb; /* Bright blue subtle background */
+            --text-dark: #2c3e50; /* Strong dark blue text */
+            --text-muted: #5c6b7a;
+            --ice-primary: #3498db; /* Bright blue accent */
+            --ice-glow: rgba(52, 152, 219, 0.15);
+            --frost-border: rgba(52, 152, 219, 0.25);
+            --success: #27ae60;
         }
 
         * {
@@ -40,7 +42,7 @@
             align-items: center;
             text-align: center;
             padding: 2rem;
-            background: radial-gradient(circle at top, #e0f2fe 0%, var(--bg-pure) 70%);
+            background: radial-gradient(circle at top, var(--bg-highlight) 0%, var(--bg-pure) 70%);
             overflow: hidden;
         }
 
@@ -67,6 +69,7 @@
             color: var(--text-dark);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             margin-bottom: 3rem;
         }
@@ -81,26 +84,26 @@
             letter-spacing: -0.03em;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            color: var(--text-dark);
         }
 
         h1 span {
-            background: linear-gradient(to right, var(--text-dark), var(--ice-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--ice-primary);
         }
 
         .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 2.5rem auto;
         }
 
         .subtitle strong {
             color: var(--text-dark);
+            font-weight: 700;
         }
 
-        /* Buttons with Frost Shimmer */
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -108,12 +111,12 @@
             background: var(--ice-primary);
             color: var(--bg-pure);
             padding: 1rem 2.5rem;
-            border-radius: 9999px;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 1.1rem;
             text-decoration: none;
             border: none;
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 8px 25px var(--ice-glow);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -121,23 +124,36 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            background: #0284c7; /* A slightly deeper blue on hover */
-            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.6);
+            background: #2980b9;
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.4);
         }
 
-        /* Features Section */
-        .features {
-            padding: 7rem 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
+        /* Global Section Styles */
         .section-title {
             text-align: center;
             font-size: 2.25rem;
             font-weight: 800;
             letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
             margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Pillars / Features Section */
+        .features {
+            padding: 7rem 2rem;
+            background-color: var(--bg-pure);
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .grid {
@@ -149,13 +165,14 @@
         .card {
             background: var(--bg-snow);
             padding: 2.5rem;
-            border-radius: 24px;
-            border: 1px solid rgba(56, 189, 248, 0.1);
+            border-radius: 16px;
+            border: 1px solid var(--frost-border);
             transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--ice-glow);
         }
 
         .icon-wrapper {
@@ -176,17 +193,59 @@
             font-size: 1.35rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--text-dark);
         }
 
-        .card p {
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .card ul li {
             color: var(--text-muted);
             font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .card ul li::before {
+            content: "→";
+            color: var(--ice-primary);
+            font-weight: bold;
         }
 
-        /* Process Section */
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--bg-highlight);
+            border-left: 4px solid var(--ice-primary);
+            padding: 1.5rem 2rem;
+            border-radius: 0 12px 12px 0;
+            margin: 3rem auto 0 auto;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-dark);
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box strong {
+            color: var(--ice-primary);
+        }
+
+        /* Timeline / Process Section */
         .process {
             background-color: var(--bg-snow);
             padding: 7rem 2rem;
+            border-top: 1px solid var(--frost-border);
+            border-bottom: 1px solid var(--frost-border);
         }
 
         .process-max {
@@ -199,21 +258,38 @@
             position: relative;
         }
 
+        /* Vertical Line */
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 22px;
+            width: 2px;
+            background: var(--frost-border);
+            z-index: 1;
+        }
+
         .step {
             display: flex;
             gap: 2rem;
             margin-bottom: 3.5rem;
             position: relative;
+            z-index: 2;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
         }
 
         .step-number {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--ice-primary);
             background: var(--bg-pure);
-            border: 1px solid var(--frost-border);
-            width: 44px;
-            height: 44px;
+            border: 2px solid var(--ice-primary);
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -222,20 +298,94 @@
             box-shadow: 0 4px 10px var(--ice-glow);
         }
 
+        .step-content {
+            background: var(--bg-pure);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--frost-border);
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
         .step-content h4 {
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
         .step-content p {
             color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Case Study / Metrics Section */
+        .case-study {
+            padding: 7rem 2rem;
+            background-color: var(--bg-pure);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .context-badge {
+            display: inline-block;
+            background: var(--bg-highlight);
+            color: var(--ice-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-snow);
+            border: 1px solid var(--frost-border);
+            border-top: 4px solid var(--success);
+            padding: 2rem 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card.primary {
+            border-top-color: var(--ice-primary);
+            background: var(--bg-highlight);
+        }
+
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card.primary .value {
+            color: var(--ice-primary);
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
         }
 
         /* Contact/CTA Section */
         .contact {
             padding: 7rem 2rem;
+            background-color: var(--bg-snow);
             text-align: center;
+        }
+
+        .contact-max {
             max-width: 800px;
             margin: 0 auto;
         }
@@ -244,11 +394,11 @@
         .calendar-container {
             margin-top: 3rem;
             border: 1px solid var(--frost-border);
-            border-radius: 24px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 30px var(--ice-glow);
             background: var(--bg-pure);
-            height: 600px;
+            height: 650px;
         }
 
         footer {
@@ -256,7 +406,8 @@
             text-align: center;
             font-size: 0.9rem;
             color: var(--text-muted);
-            border-top: 1px solid rgba(56, 189, 248, 0.1);
+            background: var(--bg-pure);
+            border-top: 1px solid var(--frost-border);
         }
 
         /* CSS Animation for Floating Ice Particles */
@@ -269,15 +420,16 @@
 
         .particle {
             position: absolute;
-            background: rgba(56, 189, 248, 0.2);
+            background: rgba(52, 152, 219, 0.2);
             border-radius: 25%;
             animation: floatParticles 8s infinite linear;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .grid { grid-template-columns: 1fr; }
+            .steps::before { left: 23px; }
             .step { flex-direction: column; gap: 1rem; }
+            .highlight-box { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -291,76 +443,141 @@
         </div>
 
         <div class="hero-content">
-            <h1>Remplissez votre pipeline B2B.<br><span>L'outbound froid, exécuté à la perfection.</span></h1>
-            <p class="subtitle">Toujeniflow est l'infrastructure d'acquisition qu'il manque à votre croissance. Modèle 100% à la performance : <strong>vous ne payez que pour les rendez-vous qualifiés générés.</strong></p>
+            <h1>Système d'Acquisition B2B.<br><span>L'outbound exécuté à la perfection.</span></h1>
+            <p class="subtitle">Toujeniflow est votre partenaire technique pour scaler votre acquisition. Délivrabilité maximale, ciblage chirurgical et <strong>propriété totale de votre système.</strong></p>
             <a href="#calendar" class="btn">
-                Réserver mon Audit Gratuit
+                Réserver mon Appel Stratégique
                 <i data-lucide="arrow-right"></i>
             </a>
         </div>
     </section>
 
     <section class="features">
-        <h2 class="section-title">Une ingénierie de pointe, pas de l'envoi de masse.</h2>
+        <h2 class="section-title">Les Fondations du Playbook</h2>
+        <p class="section-subtitle">Pas de magie, juste une infrastructure robuste, de la donnée vérifiée et un copywriting humain.</p>
+        
         <div class="grid">
             <div class="card">
-                <div class="icon-wrapper"><i data-lucide="shield-check"></i></div>
-                <h3>Infrastructure Impénétrable</h3>
-                <p>Nous construisons des systèmes d'envoi séparés pour protéger votre domaine principal. Vos emails arrivent dans la boîte de réception, jamais en spam.</p>
+                <div class="icon-wrapper"><i data-lucide="server"></i></div>
+                <h3>Infrastructure 100% à vous</h3>
+                <ul>
+                    <li>Compte Instantly, inboxes et domaines vous appartiennent.</li>
+                    <li>Setup standard : 3 domaines, 9 inboxes.</li>
+                    <li>Volume lissé : max 25 emails/jour/inbox (1800 prospects/mois).</li>
+                    <li>Totalement scalable si vous visez 5000+ prospects.</li>
+                </ul>
             </div>
             <div class="card">
-                <div class="icon-wrapper"><i data-lucide="bar-chart-3"></i></div>
-                <h3>Transparence Absolue</h3>
-                <p>Pas de métriques vaniteuses. Nos taux de réponse sont calculés de manière stricte sur le nombre de leads réels contactés, et non gonflés par le volume total d'emails envoyés.</p>
+                <div class="icon-wrapper"><i data-lucide="database"></i></div>
+                <h3>Sourcing & Data</h3>
+                <ul>
+                    <li>Ciblage ultra-précis via Sales Navigator.</li>
+                    <li>Extraction via lemlist ou Vayne.io.</li>
+                    <li>Vérification stricte de chaque email avant l'envoi.</li>
+                    <li>Zéro tolérance pour les bounces (rebonds).</li>
+                </ul>
             </div>
             <div class="card">
-                <div class="icon-wrapper"><i data-lucide="target"></i></div>
-                <h3>Scraping Chirurgical</h3>
-                <p>Nous n'achetons pas de bases de données obsolètes. Chaque prospect est extrait sur mesure en fonction de vos critères de ciblage idéaux.</p>
+                <div class="icon-wrapper"><i data-lucide="pen-tool"></i></div>
+                <h3>Copywriting & Séquençage</h3>
+                <ul>
+                    <li>Séquence de 3 étapes (1 initial + 2 relances).</li>
+                    <li>Délai de 2 jours entre les envois.</li>
+                    <li>Ton humain, ciblé et ultra-personnalisé.</li>
+                    <li>Tests A/B/C/D continus pour maximiser la conversion.</li>
+                </ul>
             </div>
+        </div>
+
+        <div class="highlight-box">
+            <i data-lucide="shield-check" style="width: 32px; height: 32px; color: var(--ice-primary); flex-shrink: 0;"></i>
+            <p><strong>Règle d'or de la Délivrabilité :</strong> Tous nos emails sont envoyés en texte brut (Plain Text, sans HTML ni images). De plus, le mode <strong>"Warm-up" reste activé en permanence</strong> pour garantir la réputation absolue de vos domaines.</p>
         </div>
     </section>
 
     <section class="process">
         <div class="process-max">
-            <h2 class="section-title">Votre seul travail : closer les appels.</h2>
+            <h2 class="section-title">Processus de Lancement</h2>
+            <p class="section-subtitle">Notre méthodologie d'exécution sur les 15 premiers jours.</p>
+            
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h4>Création du Système</h4>
-                        <p>Configuration technique complète (sécurisation DNS, DMARC, DKIM) et montée en charge progressive (warm-up) de vos adresses dédiées.</p>
+                        <h4>Jours 1 à 14 : Création & Chauffage</h4>
+                        <p>Achat de vos domaines et configuration des boîtes mail. Nous activons immédiatement le mode "warm-up" pour bâtir une réputation parfaite pendant deux semaines.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h4>Lancement des Campagnes</h4>
-                        <p>Rédaction d'accroches (copywriting) ultra-personnalisées et ciblage précis des décideurs clés au sein de votre marché cible.</p>
+                        <h4>Semaine 1 (Réunion 1) : Stratégie & ICP</h4>
+                        <p>Nous définissons ensemble votre profil de client idéal (ICP) exact et l'offre principale que nous allons mettre en avant sur le marché.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h4>Rendez-vous Synchronisés</h4>
-                        <p>Les prospects intéressés planifient eux-mêmes un appel directement dans votre agenda. Vous n'avez plus qu'à échanger avec eux.</p>
+                        <h4>Semaine 2 (Réunion 2) : Validation du Message</h4>
+                        <p>Je vous présente les scripts d'approche. Nous segmentons les angles d'attaque et nous validons ensemble le copywriting final.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Jour 15 : Lancement des Campagnes</h4>
+                        <p>L'infrastructure est chaude, les messages sont prêts et la base de données est vérifiée. Nous activons l'envoi avec une agilité et une réactivité maximale.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="case-study">
+        <div style="text-align: center;">
+            <div class="context-badge">Étude de Cas Réelle</div>
+            <h2 class="section-title">Campagne de 7 Jours</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;"><strong>Contexte :</strong> Client faisant de l'Outbound (Cold Call).<br><strong>Cible :</strong> Agences Ads spécialisées E-commerce & PME.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="value">423</div>
+                <div class="label">Prospects Contactés</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">6.15%</div>
+                <div class="label">Taux de Réponse (26)</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">46%</div>
+                <div class="label">Réponses Positives (12)</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">6</div>
+                <div class="label">RDV Honorés</div>
+            </div>
+            <div class="stat-card primary">
+                <div class="value">2</div>
+                <div class="label">Clients Signés</div>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; font-style: italic;">Note : Les messages automatiques d'absence (Out of Office) sont exclus du taux de réponse.</p>
+    </section>
+
     <section class="contact" id="calendar">
-        <h2 class="section-title">Prêt à scaler votre acquisition ?</h2>
-        <p class="subtitle">Discutons de votre entreprise, de vos objectifs, et voyons si notre système peut vous générer de la croissance prédictible.</p>
-        
-        <div class="calendar-container">
-            <iframe src="https://calendly.com/ahmed-toujeniflow/30min" width="100%" height="100%" frameborder="0"></iframe>
+        <div class="contact-max">
+            <h2 class="section-title">Prêt à scaler votre acquisition ?</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">Discutons de vos objectifs, et voyons si notre méthodologie peut générer de la croissance pour votre agence.</p>
+            
+            <div class="calendar-container">
+                <iframe src="https://calendly.com/ahmed-toujeniflow/30min" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>Toujeniflow &copy; 2026 | Agence GTM & Cold Email.</p>
+        <p>Toujeniflow &copy; 2026 | Infrastructure Outbound & Cold Emailing.</p>
     </footer>
 
     <script>
